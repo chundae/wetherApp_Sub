@@ -2,58 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import axios, {AxiosResponse} from "axios"
+import NavBar from "./components/Navbar";
+import WeatherSection from "./components/WeatherSection";
+import WeeklyForecast from "./components/WeeklyForecast";
+import ActivitySuggestion from "./components/ActivitySuggestion";
 
 function App() {
-    const [message, setMessage] = useState('');
-
-    const responseHandler = ({data}: AxiosResponse<string>) => {
-        setMessage(data);
-        return data;
-    };
-
-    const errorHandler = (error : {message: string}) => {
-        setMessage(error.message);
-        return error.message;
-    };
-
-    const onNonCorsHeaderHandler = () => {
-        axios.get('http://localhost:8080/not-cors')
-            .then(responseHandler)
-            .catch(errorHandler);
-    };
-
-    const onCorsHeaderHandler = () => {
-        axios.get('http://localhost:8080/cors')
-            .then(responseHandler)
-            .catch(errorHandler);
-    };
-
-    const onNonProxyHandler = () => {
-        axios.get('/not-proxy')
-            .then(responseHandler)
-            .catch(errorHandler);
-    };
-
-    const onProxyHandler = () => {
-        axios.get('/proxy')
-            .then(responseHandler)
-            .catch(errorHandler);
-    };
-
-    return (
-        <div>
-            <p>
-                {message}
-            </p>
-
-            <div>
-                <button onClick={onNonCorsHeaderHandler}>non cors header</button>
-                <button onClick={onCorsHeaderHandler}>cors header</button>
-                <button onClick={onNonProxyHandler}>nonProxy</button>
-                <button onClick={onProxyHandler}>proxy</button>
-            </div>
-        </div>
-    );
+   return(
+       <div className="app">
+           <NavBar/>
+           <div className="main-content">
+               <div className="weather-sections">
+                   <WeatherSection title="현재기온" details={['온도', '습도','풍속']}/>
+                   <WeatherSection title="24시간온도" details={['현재온도', '최저 / 최고 온도']}/>
+               </div>
+               <WeeklyForecast/>
+               <ActivitySuggestion/>
+           </div>
+       </div>
+   );
 }
 
 export default App;
