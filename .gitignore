@@ -94,4 +94,9 @@ release.properties
 
 # 시스템 파일
 Thumbs.db
-Desktop.ini
+
+# Generated files
+generated/
+
+src/main/resources/application.properties
+
