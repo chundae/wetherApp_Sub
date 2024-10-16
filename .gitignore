@@ -1,0 +1,97 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 빌드 아티팩트
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# 환경설정 파일
+.env
+.env.local
+.env.*.local
+
+# 캐시 파일
+.cache/
+.parcel-cache/
+eslintcache
+
+# Editor 설정 파일
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS 시스템 파일
+.DS_Store
+
+# 로그 파일
+*.log
+*.log.*
+
+# Test Coverage
+coverage/
+
+# Sass Cache
+.sass-cache/
+
+# 기타
+tmp/
+*.tmp
+*.swp
+
+# Webpack Cache
+webpack.cache/
+
+# Storybook
+.storybook/
+dist-storybook/
+
+# Java/Spring Boot
+target/
+bin/
+*.class
+
+# Gradle 관련
+.gradle/
+build/
+!gradle-wrapper.jar
+.gradle/cache/
+.gradle/wrapper/dists/
+
+# Maven 관련
+.mvn/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# 프로젝트 및 IDE 파일
+*.iml
+*.ipr
+*.iws
+
+# Lombok 관련
+.lombok/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# 시스템 파일
+Thumbs.db
+Desktop.ini
