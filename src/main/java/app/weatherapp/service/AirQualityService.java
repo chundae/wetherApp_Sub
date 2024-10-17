@@ -3,6 +3,7 @@ package app.weatherapp.service;
 import app.weatherapp.domain.Air;
 import app.weatherapp.domain.Location;
 import app.weatherapp.dto.AirDTO;
+import app.weatherapp.dto.RegionDTO;
 import app.weatherapp.explorer.AirExplorer;
 import app.weatherapp.repository.AirQualityRepository;
 import app.weatherapp.repository.LocationRepository;
@@ -39,9 +40,9 @@ public class AirQualityService {
 
     //데이터변환 및 locationID 조회("서울특별시" -> "서울" (regionLv1))
     //location 데이터는 locationService 에서 데이터 조회
-    public AirDTO convertToEntity(Location location) {
-        String regionLv1 = convertToShortRegionLv1(location.getRegionLv1());
-        String regionLv2 = location.getRegionLv2();
+    public AirDTO convertToEntity(RegionDTO regionDTO) {
+        String regionLv1 = convertToShortRegionLv1(regionDTO.getRegionLv1());
+        String regionLv2 = regionDTO.getRegionLv2();
 
         return new AirDTO(regionLv1, regionLv2);
     }

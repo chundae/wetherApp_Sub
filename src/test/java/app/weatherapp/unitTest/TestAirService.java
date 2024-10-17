@@ -3,6 +3,7 @@ package app.weatherapp.unitTest;
 import app.weatherapp.domain.Air;
 import app.weatherapp.domain.Location;
 import app.weatherapp.dto.AirDTO;
+import app.weatherapp.dto.RegionDTO;
 import app.weatherapp.explorer.AirExplorer;
 import app.weatherapp.repository.AirQualityRepository;
 import app.weatherapp.service.AirQualityService;
@@ -110,10 +111,10 @@ public class TestAirService {
         String regionLv1 = "서울특별시";
         String regionLv2 = "종로구";
 
-        Location location = new Location(regionLv1,regionLv2);
+        RegionDTO regionDTO = new RegionDTO(regionLv1, regionLv2);
 
         //when
-        AirDTO resultData = airService.convertToEntity(location);
+        AirDTO resultData = airService.convertToEntity(regionDTO);
 
         //then
         assertEquals("서울", resultData.getRegionLv1());
