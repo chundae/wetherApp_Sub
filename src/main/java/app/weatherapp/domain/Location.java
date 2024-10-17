@@ -1,5 +1,6 @@
 package app.weatherapp.domain;
 
+import com.sun.tools.jconsole.JConsoleContext;
 import jakarta.persistence.*;
 import lombok.Cleanup;
 import lombok.Getter;
@@ -33,5 +34,9 @@ public class Location {
     public Location(String regionLv1, String regionLv2) {
         this.regionLv1 = regionLv1;
         this.regionLv2 = regionLv2;
+    }
+
+    public Location() {
+
     }
 }
