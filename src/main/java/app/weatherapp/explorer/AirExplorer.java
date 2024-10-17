@@ -1,6 +1,7 @@
 package app.weatherapp.explorer;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+@Component
 public class AirExplorer {
 
     @Value("${service.api.key1}")
