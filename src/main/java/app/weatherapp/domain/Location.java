@@ -2,6 +2,7 @@ package app.weatherapp.domain;
 
 import com.sun.tools.jconsole.JConsoleContext;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class Location {
 
     @Id
@@ -38,5 +40,17 @@ public class Location {
 
     public Location() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "locationId=" + locationId +
+                ", regionLv1='" + regionLv1 + '\'' +
+                ", regionLv2='" + regionLv2 + '\'' +
+                ", regionLv3='" + regionLv3 + '\'' +
+                ", codeX='" + codeX + '\'' +
+                ", codeY='" + codeY + '\'' +
+                '}';
     }
 }
