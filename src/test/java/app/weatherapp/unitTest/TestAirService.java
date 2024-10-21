@@ -1,10 +1,9 @@
 package app.weatherapp.unitTest;
 
 import app.weatherapp.domain.Air;
-import app.weatherapp.domain.Location;
 import app.weatherapp.dto.AirDTO;
 import app.weatherapp.dto.RegionDTO;
-import app.weatherapp.explorer.AirExplorer;
+import app.weatherapp.explorer.APIExplorer;
 import app.weatherapp.repository.AirQualityRepository;
 import app.weatherapp.service.AirQualityService;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -32,7 +31,7 @@ public class TestAirService {
     private AirQualityRepository airQualityRepository;
 
     @Mock
-    private AirExplorer airExplorer;
+    private APIExplorer APIExplorer;
 
     @InjectMocks
     private AirQualityService airService; // Mock 주입된 AirService
@@ -73,13 +72,13 @@ public class TestAirService {
                     </item>
                 </response>
                 """;
-        when(airExplorer.getAirQualityData(regionLv1)).thenReturn(mockXml);
+        when(APIExplorer.getAirQualityData(regionLv1)).thenReturn(mockXml);
 
         //when(서비스 호출)
         AirDTO result = airService.parseAirQualityData(airDTO);
 
         //then(결과 검증)
-        verify(airExplorer).getAirQualityData(regionLv1);
+        verify(APIExplorer).getAirQualityData(regionLv1);
         assertNotNull(result, "result should not be null");
         assertThat(result.getRegionLv1()).isEqualTo("경기");
         assertThat(result.getRegionLv2()).isEqualTo("김포시");
@@ -92,11 +91,11 @@ public class TestAirService {
     @Test //수신 테스트
     public void testGetrespose() throws IOException {
         //given
-        AirExplorer airExplorer = new AirExplorer();
+        APIExplorer APIExplorer = new APIExplorer();
         String regionLv1 = "인천광역시";
 
         //when
-        String response = airExplorer.getAirQualityData(regionLv1);
+        String response = APIExplorer.getAirQualityData(regionLv1);
 
         //Then
         assertNotNull(response, "API 응답 성공");
@@ -105,7 +104,7 @@ public class TestAirService {
     }
 
 
-    @Test
+    @Test //변환 테스트
     public void TestGetlocationData() throws Exception {
         //given (사용자입력데이터 변환 작업)
         String regionLv1 = "서울특별시";
@@ -121,7 +120,7 @@ public class TestAirService {
         assertEquals("종로구", resultData.getRegionLv2());
     }
 
-    @Test
+    @Test //스케줄테스트
     public void TestScheduledData() throws Exception{
        //given(1시간 이전 데이터)
         LocalDateTime oneHourAgo = LocalDateTime.now().minusHours(2);
@@ -155,7 +154,7 @@ public class TestAirService {
                 </response>
                 """;
         //XML데이터 반환하도록 설정
-        when(airExplorer.getAirQualityData("서울")).thenReturn(mockXmlData);
+        when(APIExplorer.getAirQualityData("서울")).thenReturn(mockXmlData);
 
         //when 스케줄러 호출
         airService.updateAirQuality();

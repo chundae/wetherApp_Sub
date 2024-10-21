@@ -1,10 +1,9 @@
 package app.weatherapp.service;
 
 import app.weatherapp.domain.Air;
-import app.weatherapp.domain.Location;
 import app.weatherapp.dto.AirDTO;
 import app.weatherapp.dto.RegionDTO;
-import app.weatherapp.explorer.AirExplorer;
+import app.weatherapp.explorer.APIExplorer;
 import app.weatherapp.repository.AirQualityRepository;
 import app.weatherapp.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,10 @@ public class AirQualityService {
     @Autowired
     private LocationRepository locationRepository;
 
-    private final AirExplorer airExplorer;
+    private final APIExplorer APIExplorer;
 
-    public AirQualityService(AirExplorer airExplorer, AirQualityRepository airQualityRepository) {
-        this.airExplorer = airExplorer;
+    public AirQualityService(APIExplorer APIExplorer, AirQualityRepository airQualityRepository) {
+        this.APIExplorer = APIExplorer;
         this.airQualityRepository = airQualityRepository;
     }
 
@@ -87,7 +86,7 @@ public class AirQualityService {
 
     //API통신 기능(locationId 추가예정)
     public AirDTO parseAirQualityData(AirDTO airDTO) throws Exception {
-        String xmlData = airExplorer.getAirQualityData(airDTO.getRegionLv1());
+        String xmlData = APIExplorer.getAirQualityData(airDTO.getRegionLv1());
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
