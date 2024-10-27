@@ -43,8 +43,8 @@ public class TestLocationService {
         location.setRegionLv1(Lv1);
         location.setRegionLv2(Lv2);
         location.setRegionLv3(Lv3);
-        location.setCodeX("60");
-        location.setCodeY("127");
+        location.setCodeX(60);
+        location.setCodeY(127);
 
         when(locationRepository.findByRegionLv1AndRegionLv2AndRegionLv3(Lv1, Lv2, Lv3))
                 .thenReturn(Optional.of(location));

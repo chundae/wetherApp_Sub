@@ -16,10 +16,20 @@ public class LocationService {
     }
 
     public Location getlocation(RegionDTO regionDTO) {
-        Optional<Location> location = locationRepository.findByRegionLv1AndRegionLv2AndRegionLv3(
-                regionDTO.getRegionLv1(),
-                regionDTO.getRegionLv2(),
-                regionDTO.getRegionLv3());
+        Optional<Location> location;
+
+        if (regionDTO.getRegionLv3() == null) {
+            location = locationRepository.findByRegionLv1AndRegionLv2AndRegionLv3IsNull(
+                    regionDTO.getRegionLv1(),
+                    regionDTO.getRegionLv2()
+            );
+        }else {
+            location = locationRepository.findByRegionLv1AndRegionLv2AndRegionLv3(
+                    regionDTO.getRegionLv1(),
+                    regionDTO.getRegionLv2(),
+                    regionDTO.getRegionLv3()
+            );
+        }
         return location.orElse(null);
     }
 }
