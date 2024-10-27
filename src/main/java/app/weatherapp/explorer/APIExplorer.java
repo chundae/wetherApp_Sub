@@ -61,7 +61,7 @@ public class APIExplorer {
     }
 
     //날씨 API 연결 및 responseData Return
-    public String getRealTimeWeatherData(RegionDTO regionDTO) throws IOException {
+    public String getRealTimeWeatherData(Location location) throws IOException {
         LocalDateTime now = LocalDateTime.now();
         LocalDate localDate = now.toLocalDate();
 
@@ -87,8 +87,8 @@ public class APIExplorer {
         urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8"));
         urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8"));
         urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8"));
-        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(regionDTO.getCode_x()), "UTF-8"));
-        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(regionDTO.getCode_y()), "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(location.getCodeX()), "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(location.getCodeY()), "UTF-8"));
 
         // URL 객체 생성
         URL url = new URL(urlBuilder.toString());

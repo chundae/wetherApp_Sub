@@ -2,12 +2,14 @@ package app.weatherapp.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Table(name = "real_time_weather")
 @Entity
 @Getter
+@Setter
 public class RealWeather {
 
     @Id
@@ -31,7 +33,7 @@ public class RealWeather {
     private Double windSpeed;
 
     @Column(name = "wind_direction")
-    private Integer windDirection;
+    private Double windDirection;
 
     @Column(name = "checkTime")
     private Timestamp checkTime;

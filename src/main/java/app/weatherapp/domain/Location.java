@@ -28,10 +28,10 @@ public class Location {
     private String regionLv3; //동면
 
     @Column(name = "code_x")
-    private String codeX; //x좌표
+    private Integer codeX; //x좌표
 
     @Column(name = "code_y")
-    private String codeY; //Y좌표
+    private Integer codeY; //Y좌표
 
     public Location(String regionLv1, String regionLv2) {
         this.regionLv1 = regionLv1;
@@ -40,6 +40,11 @@ public class Location {
 
     public Location() {
 
+    }
+
+    public Location(Integer codeX, Integer codeY) {
+        this.codeX = codeX;
+        this.codeY = codeY;
     }
 
     @Override
