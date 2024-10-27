@@ -129,10 +129,8 @@ public class TestRealWeather {
         assertThat(result.getRainFall()).isEqualTo(0);
         assertThat(result.getWindDirection()).isEqualTo(0.8);
         assertThat(result.getSearchTime()).isEqualTo("1500");
+        assertThat(result.getCodeX()).isEqualTo(55);
+        assertThat(result.getCodeY()).isEqualTo(127);
         System.out.println(result);
     }
-
-
-
-
 }
