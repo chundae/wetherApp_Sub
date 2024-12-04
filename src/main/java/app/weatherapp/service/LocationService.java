@@ -5,6 +5,8 @@ import app.weatherapp.dto.RegionDTO;
 import app.weatherapp.repository.LocationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +33,9 @@ public class LocationService {
             );
         }
         return location.orElse(null);
+    }
+
+    public List<Location> getLocaionsLv2(String regionLv1) {
+        return locationRepository.findAllByRegionLv1(regionLv1);
     }
 }
